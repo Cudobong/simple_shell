@@ -1,5 +1,4 @@
 #include "shell.h"
-
 int check_file(char *full_path);
 
 /**
@@ -14,16 +13,16 @@ int find_program(data_of_program *data)
 	char **directories;
 
 	if (!data->command_name)
-		return (2);
+	return (2);
 
 	/**if is a full_path or an executable in the same path */
 	if (data->command_name[0] == '/' || data->command_name[0] == '.')
-		return (check_file(data->command_name));
+	return (check_file(data->command_name));
 
 	free(data->tokens[0]);
 	data->tokens[0] = str_concat(str_duplicate("/"), data->command_name);
 	if (!data->tokens[0])
-		return (2);
+	return (2);
 
 	directories = tokenize_path(data);/* search in the PATH */
 
